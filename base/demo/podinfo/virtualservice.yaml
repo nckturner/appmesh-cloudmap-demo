@@ -1,0 +1,22 @@
+apiVersion: appmesh.k8s.aws/v1beta1
+kind: VirtualService
+metadata:
+  name: podinfo
+  namespace: prod
+spec:
+  meshName: aws-eks-appmesh-cloudmap-demo
+  virtualRouter:
+    name: podinfo-router
+    listeners:
+      - portMapping:
+          port: 9898
+          protocol: http
+  routes:
+    - name: route-podinfo
+      http:
+        match:
+          prefix: /
+        action:
+          weightedTargets:
+            - virtualNodeName: podinfo
+              weight: 1
