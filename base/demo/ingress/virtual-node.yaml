@@ -6,7 +6,7 @@ metadata:
   labels:
     app: ingress
 spec:
-  meshName: "appmesh"
+  meshName: "aws-eks-appmesh-cloudmap-demo"
   listeners:
     - portMapping:
         port: 444
