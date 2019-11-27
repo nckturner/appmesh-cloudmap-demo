@@ -13,7 +13,7 @@ spec:
     mesh:
       create: true
       name: "aws-eks-appmesh-cloudmap-demo"
-      discovery: cloudmap
+      discovery: cloudMap
     tracing:
       enabled: true
       provider: jaeger
