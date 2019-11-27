@@ -1,0 +1,24 @@
+apiVersion: appmesh.k8s.aws/v1beta1
+kind: VirtualNode
+metadata:
+  name: ingress
+  namespace: demo
+  labels:
+    app: ingress
+spec:
+  meshName: "appmesh"
+  listeners:
+    - portMapping:
+        port: 444
+        protocol: http
+  serviceDiscovery:
+    cloudMap:
+      namespaceName: aws-eks-appmesh-cloudmap-demo-dns
+      serviceName: ingress
+  backends:
+    - virtualService:
+        virtualServiceName: podinfo.demo
+  logging:
+    accessLog:
+      file:
+        path: /dev/stdout

@@ -1,0 +1,19 @@
+apiVersion: appmesh.k8s.aws/v1beta1
+kind: VirtualNode
+metadata:
+  name: podinfo
+  namespace: demo
+spec:
+  meshName: "aws-eks-appmesh-cloudmap-demo"
+  listeners:
+    - portMapping:
+        port: 9898
+        protocol: http
+  serviceDiscovery:
+    cloudMap:
+      namespaceName: aws-eks-appmesh-cloudmap-demo-dns
+      serviceName: podinfo
+  logging:
+    accessLog:
+      file:
+        path: /dev/stdout
