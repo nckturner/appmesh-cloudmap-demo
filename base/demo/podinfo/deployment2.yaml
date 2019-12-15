@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: podinfo-canary
+  name: podinfo-test
   namespace: demo
   labels:
-    app: podinfo-canary
+    app: podinfo-test
 spec:
   minReadySeconds: 1
   revisionHistoryLimit: 5
@@ -15,7 +15,7 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: podinfo-canary
+      app: podinfo-test
   template:
     metadata:
       annotations:
@@ -24,7 +24,7 @@ spec:
         revision: "test.3"
         #appmesh.k8s.aws/virtualNode: does-not-exist
       labels:
-        app: podinfo-canary
+        app: podinfo-test
     spec:
       containers:
       - name: podinfod
