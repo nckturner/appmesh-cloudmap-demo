@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podinfo-canary
+  namespace: demo
+  labels:
+    app: podinfo-canary
+spec:
+  minReadySeconds: 1
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 60
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: podinfo-canary
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9898"
+        revision: "test.3"
+        #appmesh.k8s.aws/virtualNode: does-not-exist
+      labels:
+        app: podinfo-canary
+    spec:
+      containers:
+      - name: podinfod
+        image: stefanprodan/podinfo:3.1.5
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: PODINFO_UI_LOGO
+            value: https://raw.githubusercontent.com/weaveworks/eks-appmesh-profile/website/logo/amazon-eks.png
+          - name: PODINFO_UI_COLOR
+            value: yellow
+        ports:
+        - containerPort: 9898
+          name: http
+          protocol: TCP
+        command:
+        - ./podinfo
+        - --port=9898
+        - --level=info
+        - --random-delay=false
+        - --random-error=false
+        livenessProbe:
+          exec:
+            command:
+            - podcli
+            - check
+            - http
+            - localhost:9898/healthz
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+        readinessProbe:
+          exec:
+            command:
+            - podcli
+            - check
+            - http
+            - localhost:9898/readyz
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 32Mi
