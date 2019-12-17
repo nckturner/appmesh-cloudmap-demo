@@ -34,7 +34,7 @@ data:
                                 prefix: "/"
                               route:
                                 cluster: podinfo
-                                host_rewrite: podinfo.demo
+                                host_rewrite: podinfo
                                 timeout: 5s
                                 retry_policy:
                                   retry_on: "gateway-error,connect-failure,refused-stream"
