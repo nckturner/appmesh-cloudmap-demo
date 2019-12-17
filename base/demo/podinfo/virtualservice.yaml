@@ -20,3 +20,5 @@ spec:
           weightedTargets:
             - virtualNodeName: podinfo
               weight: 1
+            - virtualNodeName: podinfo-test
+              weight: 1
