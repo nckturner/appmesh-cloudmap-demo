@@ -2,7 +2,7 @@ apiVersion: appmesh.k8s.aws/v1beta1
 kind: VirtualService
 metadata:
   name: podinfo
-  namespace: prod
+  namespace: demo
 spec:
   meshName: aws-eks-appmesh-cloudmap-demo
   virtualRouter:
