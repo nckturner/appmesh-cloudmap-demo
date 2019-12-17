@@ -1,7 +1,7 @@
 apiVersion: appmesh.k8s.aws/v1beta1
 kind: VirtualService
 metadata:
-  name: podinfo
+  name: podinfo.demo
   namespace: demo
 spec:
   meshName: aws-eks-appmesh-cloudmap-demo
