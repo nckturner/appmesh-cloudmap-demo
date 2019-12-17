@@ -17,7 +17,7 @@ spec:
       serviceName: ingress
   backends:
     - virtualService:
-        virtualServiceName: podinfo.demo
+        virtualServiceName: podinfo
   logging:
     accessLog:
       file:
