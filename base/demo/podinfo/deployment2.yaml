@@ -25,6 +25,7 @@ spec:
         #appmesh.k8s.aws/virtualNode: does-not-exist
       labels:
         app: podinfo-test
+        app: podinfo-svc
     spec:
       containers:
       - name: podinfod
