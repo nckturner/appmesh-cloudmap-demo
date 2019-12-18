@@ -6,14 +6,14 @@ metadata:
   labels:
     app: ingress
 spec:
-  meshName: "aws-eks-appmesh-cloudmap-demo"
+  meshName: aws-eks-appmesh-cloudmap-demo
   listeners:
     - portMapping:
         port: 444
         protocol: http
   serviceDiscovery:
     cloudMap:
-      namespaceName: aws-eks-appmesh-cloudmap-demo-dns
+      namespaceName: demo-http
       serviceName: ingress
   backends:
     - virtualService:

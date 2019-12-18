@@ -4,14 +4,14 @@ metadata:
   name: podinfo-test
   namespace: demo
 spec:
-  meshName: "aws-eks-appmesh-cloudmap-demo"
+  meshName: aws-eks-appmesh-cloudmap-demo
   listeners:
     - portMapping:
         port: 9898
         protocol: http
   serviceDiscovery:
     cloudMap:
-      namespaceName: aws-eks-appmesh-cloudmap-demo-dns
+      namespaceName: demo-http
       serviceName: podinfo
   logging:
     accessLog:
