@@ -20,6 +20,6 @@ spec:
       port: 9411
     sidecar:
       image:
-        repository: 840364872350.dkr.ecr.<region>.amazonaws.com/aws-appmesh-envoy
+        repository: 840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy
         tag: v1.12.2.1-prod
         logLevel: debug
