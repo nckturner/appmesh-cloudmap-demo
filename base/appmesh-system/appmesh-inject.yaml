@@ -18,3 +18,8 @@ spec:
       provider: jaeger
       address: appmesh-jaeger.appmesh-system
       port: 9411
+    sidecar:
+      image:
+        repository: 840364872350.dkr.ecr.<region>.amazonaws.com/aws-appmesh-envoy
+        tag: v1.12.2.1-prod
+        logLevel: debug
